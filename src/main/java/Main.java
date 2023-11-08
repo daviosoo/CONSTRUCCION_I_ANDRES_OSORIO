@@ -130,13 +130,20 @@ class Member {
     private ArrayList<String> authorizedPersonsList;
 
     // Constructor
-    public Member(int id, String name, double availableFunds, String subscriptionType) {
+    public Member(int id, String name, String subscriptionType) {
         this.id = id;
         this.name = name;
-        this.availableFunds = availableFunds;
         this.subscriptionType = subscriptionType;
         this.unpaidBills = new ArrayList<>();
         this.authorizedPersonsList = new ArrayList<>();
+
+        if(subscriptionType.equals("VIP")) {
+            this.availableFunds = 50000;
+        }
+
+        if(subscriptionType.equals("Regular")) {
+            this.availableFunds = 100000;
+        }
     }
 
     // Getters and setters for the private variables
@@ -274,11 +281,15 @@ public class Main {
                     int id = scanner.nextInt();
                     System.out.println("Enter member name:");
                     String name = scanner.next();
-                    System.out.println("Enter available funds:");
-                    double availableFunds = scanner.nextDouble();
                     System.out.println("Enter subscription type:");
                     String subscriptionType = scanner.next();
-                    Member newMember = new Member(id, name, availableFunds, subscriptionType);
+
+                    if(!subscriptionType.equals("VIP") && !subscriptionType.equals("Regular")) {
+                        System.out.println("Invalid subscription type. (VIP) - (Regular)");
+                        break;
+                    }
+
+                    Member newMember = new Member(id, name, subscriptionType);
                     club.registerMember(newMember);
                     break;
                 case 2:
@@ -317,7 +328,6 @@ public class Main {
                     club.removeBill(removeBillId, removeBillConcept);
                     break;
                 case 7:
-                    // Exiting the application
                     System.out.println("Exiting the application. Goodbye!");
                     break;
                 default:
@@ -325,7 +335,6 @@ public class Main {
             }
         }
 
-        // Closing the scanner
         scanner.close();
     }
 }
