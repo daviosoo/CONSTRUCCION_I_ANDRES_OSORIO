@@ -295,7 +295,12 @@ public class Main {
                 case 2:
                     System.out.println("Enter member ID to remove:");
                     int removeId = scanner.nextInt();
-                    club.removeMember(removeId);
+                    boolean removedMember = club.removeMember(removeId);
+
+                    if(removedMember) {
+                        System.out.println("Member removed successfully.");
+                    }
+
                     break;
                 case 3:
                     System.out.println("Enter member ID:");
