@@ -11,7 +11,7 @@ public class Main {
 
         // Menu for selecting options
         int choice = 0;
-        while (choice != 6) {
+        while (choice != 7) {
             System.out.println("Welcome to the Social Club Management Application.");
             System.out.println("Select an option:");
             System.out.println("1. Register a member.");
